@@ -1,30 +1,278 @@
 /**
- * Any CSS included here will be global. The classic template
- * bundles Infima by default. Infima is a CSS framework designed to
- * work well for content-centric websites.
+ * Global theme: "caderno de receitas" — warm paper, ink, handwriting.
  */
 
-/* You can override the default Infima variables here. */
 :root {
-  --ifm-color-primary: #a0522d; /* Sienna */
-  --ifm-color-primary-dark: #8b4513; /* SaddleBrown */
-  --ifm-color-primary-darker: #6b3a0e; /* Darker Brown */
-  --ifm-color-primary-darkest: #4e2c0a; /* Darkest Brown */
-  --ifm-color-primary-light: #cd853f; /* Peru */
-  --ifm-color-primary-lighter: #deb887; /* Burlywood */
-  --ifm-color-primary-lightest: #f5deb3; /* Wheat */
+  --ifm-color-primary: #a0522d;
+  --ifm-color-primary-dark: #8b4513;
+  --ifm-color-primary-darker: #6b3a0e;
+  --ifm-color-primary-darkest: #4e2c0a;
+  --ifm-color-primary-light: #cd853f;
+  --ifm-color-primary-lighter: #deb887;
+  --ifm-color-primary-lightest: #f5deb3;
   --ifm-code-font-size: 95%;
-  --docusaurus-highlighted-code-line-bg: rgba(139, 69, 19, 0.1); /* SaddleBrown with transparency */
+  --docusaurus-highlighted-code-line-bg: rgba(139, 69, 19, 0.1);
+
+  --ifm-background-color: #fffaf1;
+  --ifm-navbar-background-color: rgba(255, 250, 241, 0.85);
+  --ifm-footer-background-color: #2b1d14;
+  --ifm-heading-font-family: 'Fraunces', Georgia, serif;
+  --ifm-font-color-base: #3a2a1f;
+
+  /* Design tokens */
+  --font-hand: 'Caveat', 'Segoe Print', cursive;
+  --font-serif: 'Fraunces', Georgia, serif;
+  --paper: #fdf5e4;
+  --paper-edge: #e6d6b5;
+  --ink: #2f2118;
+  --ink-soft: #6b5546;
+  --line-blue: rgba(91, 140, 199, 0.22);
+  --margin-red: rgba(214, 69, 65, 0.55);
+  --accent-yellow: #f6c445;
+  --accent-green: #5a8f4e;
+  --tape: rgba(246, 222, 150, 0.75);
+  --wood-light: #b77b45;
+  --wood-dark: #7a4a24;
 }
 
-/* For readability concerns, you should choose a lighter palette in dark mode. */
-[data-theme='dark'] {
-  --ifm-color-primary: #d2691e; /* Chocolate */
-  --ifm-color-primary-dark: #b35917; /* Darker Chocolate */
-  --ifm-color-primary-darker: #8c4713; /* Even Darker */
-  --ifm-color-primary-darkest: #66350f; /* Darkest */
-  --ifm-color-primary-light: #e9967a; /* Dark Salmon */
-  --ifm-color-primary-lighter: #f4a460; /* Sandy Brown */
-  --ifm-color-primary-lightest: #ffdab9; /* Peach Puff */
-  --docusaurus-highlighted-code-line-bg: rgba(210, 105, 30, 0.3); /* Chocolate with transparency */
+html[data-theme='dark'] {
+  --ifm-color-primary: #e08a4b;
+  --ifm-color-primary-dark: #d9762f;
+  --ifm-color-primary-darker: #c96b25;
+  --ifm-color-primary-darkest: #a6581e;
+  --ifm-color-primary-light: #e6a06c;
+  --ifm-color-primary-lighter: #9a6a44;
+  --ifm-color-primary-lightest: #f1c8a6;
+  --docusaurus-highlighted-code-line-bg: rgba(210, 105, 30, 0.3);
+
+  --ifm-background-color: #1b1511;
+  --ifm-background-surface-color: #221a15;
+  --ifm-navbar-background-color: rgba(27, 21, 17, 0.85);
+  --ifm-footer-background-color: #120e0b;
+  --ifm-font-color-base: #eadfd2;
+
+  --paper: #261d17;
+  --paper-edge: #3d3026;
+  --ink: #f1e6d8;
+  --ink-soft: #bfae9c;
+  --line-blue: rgba(120, 160, 210, 0.12);
+  --margin-red: rgba(230, 100, 90, 0.4);
+  --accent-yellow: #d9a52b;
+  --accent-green: #7fb46f;
+  --tape: rgba(200, 175, 110, 0.35);
+  --wood-light: #6b4426;
+  --wood-dark: #3d2512;
+}
+
+/* ---------- Navbar ---------- */
+.navbar {
+  backdrop-filter: saturate(160%) blur(10px);
+  -webkit-backdrop-filter: saturate(160%) blur(10px);
+  box-shadow: 0 1px 0 var(--paper-edge);
+}
+
+.navbar__title {
+  font-family: var(--font-hand);
+  font-size: 1.9rem;
+  font-weight: 700;
+}
+
+.navbar__logo {
+  transition: transform 0.5s cubic-bezier(0.3, 1.6, 0.5, 1);
+}
+
+.navbar__brand:hover .navbar__logo {
+  transform: rotate(-12deg) scale(1.1);
+}
+
+/* ---------- Footer ---------- */
+.footer--dark {
+  --ifm-footer-background-color: #2b1d14;
+  --ifm-footer-link-color: #e9d8c3;
+  --ifm-footer-title-color: #fff;
+}
+
+.footer__title {
+  font-family: var(--font-hand);
+  font-size: 1.5rem;
+}
+
+.footer__copyright {
+  font-family: var(--font-hand);
+  font-size: 1.4rem;
+  opacity: 0.85;
+}
+
+/* ---------- Doc / recipe pages ---------- */
+.theme-doc-markdown {
+  position: relative;
+  padding: 2rem 2rem 2rem 3.5rem;
+  background:
+    linear-gradient(90deg, transparent 0 calc(2.2rem - 1px), var(--margin-red) calc(2.2rem - 1px) calc(2.2rem + 1px), transparent calc(2.2rem + 1px)),
+    var(--paper);
+  border: 1px solid var(--paper-edge);
+  border-radius: 4px;
+  box-shadow: 0 18px 40px -28px rgba(60, 30, 10, 0.6);
+  animation: page-in 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.theme-doc-markdown h1 {
+  font-family: var(--font-serif);
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.theme-doc-markdown h2 {
+  font-family: var(--font-hand);
+  font-size: 2.3rem;
+  font-weight: 700;
+  color: var(--ifm-color-primary);
+  margin-top: 2.2rem;
+  position: relative;
+}
+
+.theme-doc-markdown h2::after {
+  content: '';
+  display: block;
+  width: 4rem;
+  height: 3px;
+  margin-top: 0.1rem;
+  border-radius: 3px;
+  background: var(--accent-yellow);
+}
+
+.theme-doc-markdown ul li::marker {
+  content: '✻  ';
+  color: var(--ifm-color-primary);
+  font-size: 0.85em;
+}
+
+/* Original scan shown as a taped photo */
+.theme-doc-markdown p:has(> img) {
+  position: relative;
+  width: fit-content;
+  max-width: 100%;
+  margin: 2.5rem auto 1rem;
+}
+
+.theme-doc-markdown p:has(> img)::before {
+  content: '';
+  position: absolute;
+  z-index: 1;
+  top: -14px;
+  left: 50%;
+  width: 110px;
+  height: 28px;
+  translate: -50% 0;
+  rotate: -2deg;
+  background: var(--tape);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+}
+
+.theme-doc-markdown p > img {
+  display: block;
+  padding: 10px 10px 34px;
+  background: #fff;
+  border-radius: 2px;
+  box-shadow: 0 14px 30px -12px rgba(40, 20, 5, 0.45);
+  rotate: -1deg;
+  transition:
+    rotate 0.4s ease,
+    scale 0.4s ease,
+    box-shadow 0.4s ease;
+}
+
+.theme-doc-markdown p > img:hover {
+  rotate: 0deg;
+  scale: 1.015;
+  box-shadow: 0 24px 50px -16px rgba(40, 20, 5, 0.5);
+}
+
+[data-theme='dark'] .footer--dark {
+  --ifm-footer-background-color: #120e0b;
+}
+
+[data-theme='dark'] .theme-doc-markdown p > img {
+  background: #efe6d6;
+}
+
+/* "NÃO REVISADO" warning as a rubber stamp */
+.theme-doc-markdown .theme-admonition-danger {
+  --ifm-alert-background-color: transparent;
+  --ifm-alert-border-color: transparent;
+  border: 2px dashed var(--margin-red);
+  border-radius: 6px;
+  color: var(--ink-soft);
+  font-size: 0.92rem;
+}
+
+.theme-doc-markdown .theme-admonition-danger [class*='admonitionHeading'] {
+  display: inline-block;
+  color: #b3261e;
+  border: 2px solid #b3261e;
+  padding: 0 0.4rem;
+  border-radius: 3px;
+  rotate: -2deg;
+  letter-spacing: 0.08em;
+}
+
+[data-theme='dark'] .theme-doc-markdown .theme-admonition-danger [class*='admonitionHeading'] {
+  color: #ff8a80;
+  border-color: #ff8a80;
+}
+
+/* Notebook index page cards */
+.card {
+  border: 1px solid var(--paper-edge);
+  background: var(--paper);
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+a.card:hover {
+  transform: translateY(-4px) rotate(-0.6deg);
+  box-shadow: 0 14px 28px -16px rgba(60, 30, 10, 0.55);
+}
+
+/* Table of contents: recipe titles */
+.table-of-contents__link--active {
+  font-weight: 700;
+}
+
+.theme-edit-this-page {
+  font-weight: 600;
+}
+
+@keyframes page-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (max-width: 996px) {
+  .theme-doc-markdown {
+    padding: 1.4rem 1rem 1.4rem 1.6rem;
+    background: var(--paper);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+  }
+  .theme-doc-markdown {
+    animation: none;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
 }

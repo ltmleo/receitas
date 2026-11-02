@@ -30,6 +30,17 @@ const config: Config = {
     defaultLocale: 'pt-br',
     locales: ['pt-br'],
   },
+  stylesheets: [
+    {
+      href: 'https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&display=swap',
+      type: 'text/css',
+    },
+  ],
+  headTags: [
+    {tagName: 'link', attributes: {rel: 'preconnect', href: 'https://fonts.googleapis.com'}},
+    {tagName: 'link', attributes: {rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: 'anonymous'}},
+  ],
+  plugins: ['./plugins/recipe-index.ts'],
   themes: [
       [
         require.resolve("@easyops-cn/docusaurus-search-local"),
@@ -38,6 +49,8 @@ const config: Config = {
           hashed: true,
           docsRouteBasePath: ["/"],
           docsDir: ["receitas"],
+          indexBlog: false,
+          language: ["pt", "en"],
         }),
       ],
   ],
@@ -49,10 +62,12 @@ const config: Config = {
           trackingID: 'G-714QFE3V9G',
           anonymizeIP: true,
         },
+        blog: false,
         docs: {
           sidebarPath: './sidebars.ts',
           path: './receitas',
           routeBasePath: '/',
+          editUrl: 'https://github.com/ltmleo/receitas/edit/main/',
         },
         theme: {
           customCss: './src/css/custom.css',
@@ -71,12 +86,15 @@ const config: Config = {
         src: 'img/logo.svg',
       },
       items: [
-        // {
-        //   type: 'docSidebar',
-        //   sidebarId: 'tutorialSidebar',
-        //   position: 'left',
-        //   label: 'Receitas',
-        // },
+        {
+          type: 'dropdown',
+          label: 'Cadernos',
+          position: 'left',
+          items: [
+            {label: 'Doces · Vó Elisa', to: '/receitas/doces-vo-elisa'},
+            {label: 'Salgados · Vó Elisa', to: '/receitas/salgados-vo-elisa'},
+          ],
+        },
         {
           href: 'https://ltmleo.github.io/blog/',
           label: '@ltmleo',
@@ -91,8 +109,12 @@ const config: Config = {
           title: 'Receitas',
           items: [
             {
-              label: 'Doces - Vó Elisa',
+              label: 'Doces · Vó Elisa',
               to: '/receitas/doces-vo-elisa',
+            },
+            {
+              label: 'Salgados · Vó Elisa',
+              to: '/receitas/salgados-vo-elisa',
             },
           ],
         },
@@ -109,8 +131,17 @@ const config: Config = {
             },
           ],
         },
+        {
+          title: 'Colabore',
+          items: [
+            {
+              label: 'Sugerir uma correção',
+              href: 'https://github.com/ltmleo/receitas',
+            },
+          ],
+        },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} Receitas. Built with Docusaurus.`,
+      copyright: `Receita de vó não se perde, se passa adiante. © ${new Date().getFullYear()}`,
     },
     prism: {
       theme: prismThemes.github,
