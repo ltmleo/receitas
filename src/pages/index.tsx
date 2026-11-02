@@ -1,38 +1,46 @@
 import type {ReactNode} from 'react';
-import clsx from 'clsx';
-import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
-import HomepageFeatures from '@site/src/components/HomepageFeatures';
-import Heading from '@theme/Heading';
+import Hero from '@site/src/components/Hero';
+import RecipeMarquee from '@site/src/components/RecipeMarquee';
+import Bookshelf from '@site/src/components/Bookshelf';
+import HowItWorks from '@site/src/components/HowItWorks';
+import Stats from '@site/src/components/Stats';
+import Reveal from '@site/src/components/Reveal';
+import useInView from '@site/src/hooks/useInView';
+import clsx from 'clsx';
 
 import styles from './index.module.css';
 
-function HomepageHeader() {
-  const {siteConfig} = useDocusaurusContext();
+function Closing() {
+  const {ref, inView} = useInView<HTMLElement>({threshold: 0.6});
   return (
-    <header className={clsx('hero hero--primary', styles.heroBanner)}>
-      <div className="container">
-        <Heading as="h1" className="hero__title">
-          {siteConfig.title}
-        </Heading>
-        <p className="hero__subtitle">{siteConfig.tagline}</p>
-        <div className={styles.buttons}>
-        </div>
-      </div>
-    </header>
+    <section ref={ref} className={clsx(styles.closing, inView && styles.drawn)}>
+      <Reveal variant="fade">
+        <blockquote className={styles.quote}>
+          Receita de vó não se perde,
+          <br />
+          se passa adiante.
+          <svg viewBox="0 0 60 50" aria-hidden="true">
+            <path d="M30 46 C 10 32, 2 22, 8 12 C 14 2, 26 6, 30 16 C 34 6, 46 2, 52 12 C 58 22, 50 32, 30 46 Z" />
+          </svg>
+        </blockquote>
+      </Reveal>
+    </section>
   );
 }
 
 export default function Home(): ReactNode {
   const {siteConfig} = useDocusaurusContext();
   return (
-    <Layout
-      title={siteConfig.title}
-      description="Receitas de Familia">
-      <HomepageHeader />
+    <Layout title={siteConfig.title} description={siteConfig.tagline}>
+      <Hero />
       <main>
-        <HomepageFeatures />
+        <RecipeMarquee />
+        <Bookshelf />
+        <HowItWorks />
+        <Stats />
+        <Closing />
       </main>
     </Layout>
   );

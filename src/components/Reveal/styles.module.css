@@ -1,0 +1,32 @@
+.reveal {
+  transition:
+    opacity 0.7s ease var(--reveal-delay, 0ms),
+    transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) var(--reveal-delay, 0ms);
+}
+
+:global(html[data-reveal-ready]) .reveal:not(.visible) {
+  opacity: 0;
+}
+
+:global(html[data-reveal-ready]) .up:not(.visible) {
+  transform: translateY(32px);
+}
+
+:global(html[data-reveal-ready]) .tilt:not(.visible) {
+  transform: translateY(40px) rotate(-3deg);
+}
+
+.visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    transition: none;
+  }
+  :global(html[data-reveal-ready]) .reveal:not(.visible) {
+    opacity: 1;
+    transform: none;
+  }
+}
