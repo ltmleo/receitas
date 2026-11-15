@@ -4,6 +4,19 @@ import type * as Preset from '@docusaurus/preset-classic';
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
+// Barra compartilhada entre os sites de @ltmleo (fonte: ltmleo/ltmleo.github.io, src/shared).
+// O conteúdo do <ltm-bar> é o fallback sem JS e reserva a altura antes do script carregar.
+const ltmBar = () => ({
+  name: 'ltm-bar',
+  injectHtmlTags: () => ({
+    headTags: [{tagName: 'script', attributes: {src: 'https://ltmleo.github.io/shared/ltm-bar.v1.js', defer: true}}],
+    // string porque o Docusaurus só aceita tags HTML conhecidas no formato de objeto
+    preBodyTags: [
+      '<ltm-bar site="receitas" style="display:block;height:36px"><a href="https://ltmleo.github.io/">← @ltmleo</a></ltm-bar>',
+    ],
+  }),
+});
+
 const config: Config = {
   title: 'Minhas Receitas de família',
   tagline: 'Receitas escaneadas de cadernos de receitas de família e digitalizadas utilizando Inteligência Artificial',
@@ -40,7 +53,7 @@ const config: Config = {
     {tagName: 'link', attributes: {rel: 'preconnect', href: 'https://fonts.googleapis.com'}},
     {tagName: 'link', attributes: {rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: 'anonymous'}},
   ],
-  plugins: ['./plugins/recipe-index.ts'],
+  plugins: ['./plugins/recipe-index.ts', ltmBar],
   themes: [
       [
         require.resolve("@easyops-cn/docusaurus-search-local"),
@@ -97,7 +110,7 @@ const config: Config = {
         },
         {
           href: 'https://ltmleo.github.io/blog/',
-          label: '@ltmleo',
+          label: 'Blog',
           position: 'right',
         },
       ],
@@ -128,6 +141,10 @@ const config: Config = {
             {
               label: 'Leia meu blog',
               href: 'https://ltmleo.github.io/blog/blog',
+            },
+            {
+              label: 'Mais de @ltmleo',
+              href: 'https://ltmleo.github.io/#sites',
             },
           ],
         },
